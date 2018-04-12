@@ -1,2 +1,2 @@
 ##Javascript week3 assignment
-https://github.com/HackYourFuture/JavaScript1/tree/master/Week3
+[Assigment details](https://github.com/HackYourFuture/JavaScript1/blob/master/Week3/MAKEME.md)
