@@ -42,10 +42,74 @@ var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
 console.log(person);
 function printObject(object){
   for (var properity in object) {
-    console.log("key => " + properity + "|  value => " + object[properity]);
+    console.log("key => " + properity + ",  value => " + object[properity]);
   }
 }
 printObject(person);
 
 //3.4
-console.log("---------------------------  Part 3.4 () --------------------------- ");
+console.log("---------------------------  Part 3.4 (vehicleType function) --------------------------- ");
+function vehicleType(color, code) {
+  if (code == 1) {
+    return "a " + color + " " + "car"; 
+  } else if (code == 2){
+    return "a " + color + " " + "motorbike"; 
+  }
+}
+console.log("vehicleType('blue', 1) ===> " + vehicleType("blue", 1));
+console.log("vehicleType('red', 2) ===> " + vehicleType("red", 2));
+
+//3.5
+console.log("---------------------------  Part 3.5 (write function without if) --------------------------- ");
+console.log("yes");
+
+//3.6
+console.log("---------------------------  Part 3.6 (Adding age attribute to vehicleType function  ) --------------------------- ");
+//asume that a new car has age <= 1 
+function vehicleType(color, code, age) {
+  if (code == 1 && age <= 1) {
+    return "a " + color + " new " + "car"; 
+  }else if(code == 1 && age > 1) {
+    return "a " + color + " old " + "car";
+  }
+  else if (code == 2 && age <= 1){
+    return "a " + color + " new " + "motorbike"; 
+  }
+  else if (code == 2 && age > 1){
+    return "a " + color + " old " + "motorbike"; 
+  }
+}
+console.log("vehicleType('blue', 1, 5)  ===>  " + vehicleType("blue", 1, 5));
+console.log("vehicleType('red', 1, 1)   ===>  " + vehicleType("red", 1, 1));
+console.log("vehicleType('blue', 2, 3)  ===>  " + vehicleType("blue", 2, 3));
+console.log("vehicleType('black', 2, 1) ===>  " + vehicleType("black", 2, 1));
+
+//3.7
+console.log("---------------------------  Part 3.7 (Creating Vechile List) --------------------------- ");
+let list = ["motorbike", "caravan", "bike"];
+console.log("list = " + list);
+
+//3.8
+console.log("---------------------------  Part 3.8 (Find third element) --------------------------- ");
+console.log("Third item of the list is: " + list[2]);
+
+//3.9
+console.log("---------------------------  Part 3.9 () --------------------------- ");
+
+//3.10
+console.log("---------------------------  Part 3.10 (Advertisment using vehicle list ) --------------------------- ");
+//"Amazing Joe's Garage, we service cars, motorbikes, caravans and bikes.". (Hint: use a for loop.)
+var vechileList = ["car", "motorbike", "caravan", "bike"];
+let message = "Amazing Joe's Garage, we service";
+
+for( i = 0; i < vechileList.length; i++){
+  if(i == 0) {
+    message += " " + vechileList[i]+"s";
+  }else if (i == vechileList.length-1) {
+    message += " and " + vechileList[i]+"s.";
+  }else {
+    message += ", " + vechileList[i]+"s";
+  }
+ 
+}
+console.log(message);
