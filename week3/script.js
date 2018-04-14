@@ -101,15 +101,113 @@ console.log("---------------------------  Part 3.10 (Advertisment using vehicle 
 //"Amazing Joe's Garage, we service cars, motorbikes, caravans and bikes.". (Hint: use a for loop.)
 var vechileList = ["car", "motorbike", "caravan", "bike"];
 let message = "Amazing Joe's Garage, we service";
-
-for( i = 0; i < vechileList.length; i++){
-  if(i == 0) {
-    message += " " + vechileList[i]+"s";
-  }else if (i == vechileList.length-1) {
-    message += " and " + vechileList[i]+"s.";
-  }else {
-    message += ", " + vechileList[i]+"s";
+function Advertise(list, msg) {
+  for( i = 0; i < list.length; i++){
+    if(i == 0) {
+      msg += " " + list[i]+"s";
+    }else if (i == list.length-1) {
+      msg += " and " + list[i]+"s.";
+    }else {
+      msg += ", " + list[i]+"s";
+    }
   }
- 
+  return msg;
 }
-console.log(message);
+
+console.log("The list is: " + vechileList);
+console.log(Advertise(vechileList, message));
+
+//3.11
+console.log("---------------------------  Part 3.11 ( Test advertisment with more elements) --------------------------- ");
+vechileList.push("truck");
+console.log("The new list is: " + vechileList);
+console.log(Advertise(vechileList, message));
+
+//3.12
+console.log("---------------------------  Part 3.12 ( Create an empty object ) --------------------------- ");
+var obj = {};
+console.log(obj);
+//3.13
+console.log("---------------------------  Part 3.13 ( Teachers object ) --------------------------- ");
+obj = {names: ["Tommy", "Victor", "Wojtek"]};
+console.log( obj);
+
+//14
+console.log("---------------------------  Part 3.14 ( Add languages property to Teachers object ) --------------------------- ");
+obj = { names: ["Tommy", "Victor", "Wojtek"],
+  languages: ["HTML", "CSS", "JAVASCRIPT", "Git"]
+};
+console.log( obj);
+
+//15
+console.log("---------------------------  Part 3.15 ( Compare Array with  == and === ) --------------------------- ");
+let x = [1,2,3];
+let y = [1,2,3];
+let z = y;
+function arraysAreTheSame(arr1, arr2){
+  if (arr1.length !== arr2.length) return false;
+  for (var i = 0, len = arr1.length; i < len; i++){
+      if (arr1[i] != arr2[i]){
+          return false;
+      }
+  }
+  return true; 
+}
+  
+function arraysAreIdentical(arr1, arr2){
+  if (arr1.length !== arr2.length) return false;
+  for (var i = 0, len = arr1.length; i < len; i++){
+      if (arr1[i] !== arr2[i]){
+          return false;
+      }
+  }
+  return true; 
+}
+console.log("x is: " + x);
+console.log("y is: " + y);
+console.log("z is: " + z);
+console.log("arraysAreTheSame(x, y) is   : " + arraysAreTheSame(x, y) );
+console.log("arraysAreIdentical(x, y) is : " + arraysAreIdentical(x, y)  );
+console.log("arraysAreTheSame(z, y) is   : " + arraysAreTheSame(z, y) );
+console.log("arraysAreTheSame(z, x) is   : " + arraysAreTheSame(z, x) );
+
+//16
+console.log("---------------------------  Part 3.16 ( Objects changing) --------------------------- ");
+//Show that changing o2 changes o3 (or not) and changing o1 changes o3(or not).
+//Does the order that you assign (o3 = o2 or o2 = o3) matter?
+let o1 = { foo: 'bar' };
+let o2 = { foo: 'bar' };
+let o3 = o2;
+
+function viewObjects() {
+  console.log("o1 is: ");
+  console.log(o1);
+  console.log("o2 is: ");
+  console.log(o2);
+  console.log("o3 is: ");
+  console.log(o3);
+}
+viewObjects();
+console.log("change o2 to {foo: 'cat'}");
+ o2 = {foo: 'cat'};
+ o3=o2;
+viewObjects();
+console.log("changing o1 to {foo: 'rabbit'} ");
+o1 = {foo: 'rabbit'};
+viewObjects();
+console.log("");
+o1 = {name: 'David'};
+o2 = {name: 'Per'};
+o3 = {name: 'Eric'};
+o2=o3;
+viewObjects();
+console.log("changing o2 to {name: 'Ali'}");
+o2 = {name: 'Ali'};
+
+viewObjects();
+
+//17
+console.log("---------------------------  Part 3.17 ( ) --------------------------- ");
+let bar = 42;
+type = typeof typeof bar;
+console.log(type);
