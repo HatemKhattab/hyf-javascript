@@ -207,7 +207,7 @@ o2 = {name: 'Ali'};
 viewObjects();
 
 //17
-console.log("---------------------------  Part 3.17 ( ) --------------------------- ");
+console.log("---------------------------  Part 3.17 ( typeof typeof number) --------------------------- ");
 let bar = 42;
 type = typeof typeof bar;
 console.log(type);
