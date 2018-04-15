@@ -211,3 +211,20 @@ console.log("---------------------------  Part 3.17 ( typeof typeof number) ----
 let bar = 42;
 type = typeof typeof bar;
 console.log(type);
+
+// more javascript
+
+function checkArray(ary) {
+  let i = 0;
+  while(i < ary.length){
+    let j = i + 1;
+    while (j < ary.length){
+      if (typeof ary[i] == typeof ary [j]) {
+        console.log("Compare",ary[i], "with",ary[j],":","same type","i= ",i, "j= ",j);
+        }else{
+          console.log("Compare",ary[i], "with",ary[j],":","diffrent type","i= ",i, "j= ",j);} 
+        j++;  
+    }
+    i++;
+  }
+}
