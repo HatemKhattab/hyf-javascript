@@ -1,230 +1,154 @@
-//Week 3 Assignment
+var bookNames = 
+                ["harry_potter_chamber_secrets",
+                "effective_java",//Joshua Bloch
+                "the_ruby_programming_language",//Yukihiro Matsumoto
+                "fifty_shades_of_grey",//E. L. James
+                "html_quickStart_guide",//ClydeBank Technology
+                "design_patterns_elements_of_reusable_object_oriented_software",// Erich Gamma
+                "mastering_node_js_second_edition",//Sandro Pasquali
+                "sql_quickStart_guide",//ClydeBank Technology
+                "the_road_to_learn_react",//Robin Wieruch
+                "bootstrap_4_quick_start"//Jacob Lett
+                ];
 
-//1. Strings
-console.log("--------------------------- Part 1 (Strings) --------------------------- ");
-let myString = "hello,this,is,a,difficult,to,read,sentence";
-console.log("Original String is: " + myString);
-console.log("The length of myString is: " + myString.length);
-myString = myString.replace(/,/g , " ");
-console.log("The modified String is: " + myString);
-
-//2. Arrays
-console.log("---------------------------  Part 2 (Arrays) --------------------------- ");
-let favoriteAnimals = ['blowfish', 'capricorn', 'giraffe'];
-console.log("favoriteAnimals: " + favoriteAnimals);
-favoriteAnimals.push("turtle");
-console.log("favoriteAnimals after adding turtle : " + favoriteAnimals);
-favoriteAnimals.splice(1, 0, "meerkat");
-console.log("favoriteAnimals after adding meerkat : " + favoriteAnimals);
-console.log("The array has a length of: " + favoriteAnimals.length);
-favoriteAnimals.splice(3,1);
-console.log("favoriteAnimals: " + favoriteAnimals);
-var meerkat_index = favoriteAnimals.indexOf("meerkat");
-console.log("the item you are looking for is at index: " + meerkat_index);
-
-//3.1 
-console.log("---------------------------  Part 3.1 (Sum function) --------------------------- ");
-function Sum(num1, num2, num3) {
-  return num1+num2+num3;
-}
-console.log("Sum(1,2,3) =  " + Sum(1,2,3));
-
-//3.2 
-console.log("---------------------------  Part 3.2 (colorCar function) --------------------------- ");
-function colorCar(color) {
-  return "a " + color+ " car";
-}
-console.log("colorCar('red'): " + colorCar("red"));
-
-//3.3 
-console.log("---------------------------  Part 3.3 (printObject  function) --------------------------- ");
-var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
-console.log(person);
-function printObject(object){
-  for (var properity in object) {
-    console.log("key => " + properity + ",  value => " + object[properity]);
+// write books id on HTML from an array
+function createUl(arr){
+  var ul = document.createElement('ul');
+  document.body.appendChild(ul)
+  for (let i=0; i<arr.length; i++){
+    var li = document.createElement('li');
+    li.setAttribute('id', i);
+    li.innerHTML = arr[i];
+    ul.appendChild(li);
   }
 }
-printObject(person);
+//createUl(bookNames);
 
-//3.4
-console.log("---------------------------  Part 3.4 (vehicleType function) --------------------------- ");
-function vehicleType(color, code) {
-  if (code == 1) {
-    return "a " + color + " " + "car"; 
-  } else if (code == 2){
-    return "a " + color + " " + "motorbike"; 
-  }
-}
-console.log("vehicleType('blue', 1) ===> " + vehicleType("blue", 1));
-console.log("vehicleType('red', 2) ===> " + vehicleType("red", 2));
+// books object
+var books = {
+  harry_potter_chamber_secrets:
+    {
+      title: "Harry Potter's - The Chamber of Secrets " ,
+      language: "english",
+      author: "J. K. Rowling"
+    },
 
-//3.5
-console.log("---------------------------  Part 3.5 (write function without if) --------------------------- ");
-console.log("yes");
+  effective_java: 
+    {
+      title: "Effective Java " ,
+      language: "english",
+      author: "Joshua Bloch"
+    },
 
-//3.6
-console.log("---------------------------  Part 3.6 (Adding age attribute to vehicleType function  ) --------------------------- ");
-//asume that a new car has age <= 1 
-function vehicleType(color, code, age) {
-  if (code == 1 && age <= 1) {
-    return "a " + color + " new " + "car"; 
-  }else if(code == 1 && age > 1) {
-    return "a " + color + " old " + "car";
-  }
-  else if (code == 2 && age <= 1){
-    return "a " + color + " new " + "motorbike"; 
-  }
-  else if (code == 2 && age > 1){
-    return "a " + color + " old " + "motorbike"; 
-  }
-}
-console.log("vehicleType('blue', 1, 5)  ===>  " + vehicleType("blue", 1, 5));
-console.log("vehicleType('red', 1, 1)   ===>  " + vehicleType("red", 1, 1));
-console.log("vehicleType('blue', 2, 3)  ===>  " + vehicleType("blue", 2, 3));
-console.log("vehicleType('black', 2, 1) ===>  " + vehicleType("black", 2, 1));
+  the_ruby_programming_language:
+    {
+      title: "The Ruby programming language" ,
+      language: "english",
+      author: "Yukihiro Matsumoto"
+    },
 
-//3.7
-console.log("---------------------------  Part 3.7 (Creating Vechile List) --------------------------- ");
-let list = ["motorbike", "caravan", "bike"];
-console.log("list = " + list);
+  fifty_shades_of_grey:
+    {
+      title: "Fifty shades of grey" ,
+      language: "english",
+      author: "E. L. James"
+    },
 
-//3.8
-console.log("---------------------------  Part 3.8 (Find third element) --------------------------- ");
-console.log("Third item of the list is: " + list[2]);
+  html_quickStart_guide:
+    {
+      title: "HTML quick start quide" ,
+      language: "english",
+      author: "ClydeBank Technology"
+    },
 
-//3.9
-console.log("---------------------------  Part 3.9 () --------------------------- ");
+  design_patterns_elements_of_reusable_object_oriented_software:
+    {
+      title: "Design patterns elements of reusable object oriented software" ,
+      language: "english",
+      author: "Erich Gamma"
+    },
 
-//3.10
-console.log("---------------------------  Part 3.10 (Advertisment using vehicle list ) --------------------------- ");
-//"Amazing Joe's Garage, we service cars, motorbikes, caravans and bikes.". (Hint: use a for loop.)
-var vechileList = ["car", "motorbike", "caravan", "bike"];
-let message = "Amazing Joe's Garage, we service";
-function Advertise(list, msg) {
-  for( i = 0; i < list.length; i++){
-    if(i == 0) {
-      msg += " " + list[i]+"s";
-    }else if (i == list.length-1) {
-      msg += " and " + list[i]+"s.";
-    }else {
-      msg += ", " + list[i]+"s";
+  mastering_node_js_second_edition:
+    {
+      title: "Mastering Node.js second edition" ,
+      language: "english",
+      author: "Sandro Pasquali"
+    },
+
+  sql_quickStart_guide:
+    {
+      title: "SQL quick start guide" ,
+      language: "english",
+      author: "ClydeBank Technology"
+    },
+
+  the_road_to_learn_react:
+    {
+      title: "The road to learn React" ,
+      language: "english",
+      author: "Robin Wieruch"
+    },
+
+    bootstrap_4_quick_start:
+    {
+      title: "Bootstrap 4 quick start" ,
+      language: "english",
+      author: "Jacob Lett"
     }
-  }
-  return msg;
-}
-
-console.log("The list is: " + vechileList);
-console.log(Advertise(vechileList, message));
-
-//3.11
-console.log("---------------------------  Part 3.11 ( Test advertisment with more elements) --------------------------- ");
-vechileList.push("truck");
-console.log("The new list is: " + vechileList);
-console.log(Advertise(vechileList, message));
-
-//3.12
-console.log("---------------------------  Part 3.12 ( Create an empty object ) --------------------------- ");
-var obj = {};
-console.log(obj);
-//3.13
-console.log("---------------------------  Part 3.13 ( Teachers object ) --------------------------- ");
-obj = {names: ["Tommy", "Victor", "Wojtek"]};
-console.log( obj);
-
-//14
-console.log("---------------------------  Part 3.14 ( Add languages property to Teachers object ) --------------------------- ");
-obj = { names: ["Tommy", "Victor", "Wojtek"],
-  languages: ["HTML", "CSS", "JAVASCRIPT", "Git"]
 };
-console.log( obj);
 
-//15
-console.log("---------------------------  Part 3.15 ( Compare Array with  == and === ) --------------------------- ");
-let x = [1,2,3];
-let y = [1,2,3];
-let z = y;
-function arraysAreTheSame(arr1, arr2){
-  if (arr1.length !== arr2.length) return false;
-  for (var i = 0, len = arr1.length; i < len; i++){
-      if (arr1[i] != arr2[i]){
-          return false;
-      }
-  }
-  return true; 
-}
-  
-function arraysAreIdentical(arr1, arr2){
-  if (arr1.length !== arr2.length) return false;
-  for (var i = 0, len = arr1.length; i < len; i++){
-      if (arr1[i] !== arr2[i]){
-          return false;
-      }
-  }
-  return true; 
-}
-console.log("x is: " + x);
-console.log("y is: " + y);
-console.log("z is: " + z);
-console.log("arraysAreTheSame(x, y) is   : " + arraysAreTheSame(x, y) );
-console.log("arraysAreIdentical(x, y) is : " + arraysAreIdentical(x, y)  );
-console.log("arraysAreTheSame(z, y) is   : " + arraysAreTheSame(z, y) );
-console.log("arraysAreTheSame(z, x) is   : " + arraysAreTheSame(z, x) );
+// write books object on HTML
+function viewBooks(obj) {
+  var booksUl = document.createElement('ul');
+  document.body.appendChild(booksUl)
+    for (let i=0; i<Object.keys(obj).length; i++){
+      var book_li = document.createElement('li');
+      book_li.setAttribute('id', Object.keys(obj)[i]);
+      booksUl.appendChild(book_li);
 
-//16
-console.log("---------------------------  Part 3.16 ( Objects changing) --------------------------- ");
-//Show that changing o2 changes o3 (or not) and changing o1 changes o3(or not).
-//Does the order that you assign (o3 = o2 or o2 = o3) matter?
-let o1 = { foo: 'bar' };
-let o2 = { foo: 'bar' };
-let o3 = o2;
+      var title = document.createElement('h1');
+      title.innerHTML = obj[Object.keys(obj)[i]].title;
 
-function viewObjects() {
-  console.log("o1 is: ");
-  console.log(o1);
-  console.log("o2 is: ");
-  console.log(o2);
-  console.log("o3 is: ");
-  console.log(o3);
-}
-viewObjects();
-console.log("change o2 to {foo: 'cat'}");
- o2 = {foo: 'cat'};
- o3=o2;
-viewObjects();
-console.log("changing o1 to {foo: 'rabbit'} ");
-o1 = {foo: 'rabbit'};
-viewObjects();
-console.log("");
-o1 = {name: 'David'};
-o2 = {name: 'Per'};
-o3 = {name: 'Eric'};
-o2=o3;
-viewObjects();
-console.log("changing o2 to {name: 'Ali'}");
-o2 = {name: 'Ali'};
+      var language = document.createElement('h2');
+      language.innerHTML = obj[Object.keys(obj)[i]].language;
 
-viewObjects();
-
-//17
-console.log("---------------------------  Part 3.17 ( typeof typeof number) --------------------------- ");
-let bar = 42;
-type = typeof typeof bar;
-console.log(type);
-
-// more javascript
-
-function checkArray(ary) {
-  let i = 0;
-  while(i < ary.length){
-    let j = i + 1;
-    while (j < ary.length){
-      if (typeof ary[i] == typeof ary [j]) {
-        console.log("Compare",ary[i], "with",ary[j],":","same type","i= ",i, "j= ",j);
-        }else{
-          console.log("Compare",ary[i], "with",ary[j],":","diffrent type","i= ",i, "j= ",j);} 
-        j++;  
+      var author = document.createElement('h2');
+      author.innerHTML = obj[Object.keys(obj)[i]].author;
+      book_li.appendChild(title);
+      book_li.appendChild(language);
+      book_li.appendChild(author);
     }
-    i++;
+}
+
+//viewBooks(books);
+
+//images object
+var booksCover = {
+  harry_potter_chamber_secrets: "./images/harry_potter.jpg",
+  effective_java: "./images/effective_java.jpg",
+  the_ruby_programming_language: "./images/the_ruby_programming_language.jpg",
+  fifty_shades_of_grey: "./images/fifty_shades.jpg",
+  html_quickStart_guide: "./images/html_quick_start_guide.jpg",
+  design_patterns_elements_of_reusable_object_oriented_software: "./images/design_pattern.jpg",
+  mastering_node_js_second_edition: "./images/mastering_node_js.jpg",
+  sql_quickStart_guide: "./images/sql_quick_guide.jpg",
+  the_road_to_learn_react: "./images/the_road_to_react.jpg",
+  bootstrap_4_quick_start: "./images/bootstrap_quick_start.jpg"
+};
+
+
+//To view book imgage at the corresponding li
+function viewImages(obj){
+  console.log("calling viewImages function ");
+  console.log(obj);
+  for (let i=0; i<Object.keys(obj).length; i++){
+    var li = document.getElementById(Object.keys(obj)[i]);
+    var img = document.createElement('img');
+    var key = Object.keys(obj)[i];
+    img.setAttribute("src", obj[key]);
+    img.setAttribute("alt", "books cover");
+    li.appendChild(img);
   }
 }
+
+//viewImages(images);
