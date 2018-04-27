@@ -6,10 +6,11 @@ var students = [
     city: "Växjö",
     pic: ""
   },
+
   {
     id: "2",
     name: "Per",
-    education: "Economy",
+    education: "Business",
     city: "Götenborg",
     pic: ""
   }
