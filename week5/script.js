@@ -67,20 +67,14 @@ tasks.map(changeToHours);
 // remove element that has duration less than 2 hours
 var tasksModified =  tasks.filter(element => element.duration >= 2);
 
+//calculate the billing if he take 80 € /hour
+function calcBilling(element){
+  let cost = element.duration * 80;
+  let cost_rounded = cost.toFixed(2);
+  let cost_euro = "€ "+ cost_rounded;
+  element.cost = cost_euro;
+}
+
+tasksModified.map(calcBilling);
 
 console.log(tasksModified);
-
-//var newNumbers = arr.filter(num => (num%2 !== 0));
-
-//console.log(tasks);
-
-// Write a program that computes how much Maartje has earned by completing these tasks, using map and filter. For the 'summing part' you can try your luck with reduce; alternatively, you may use forEach or a for loop.
-
-// Follow these steps. Each step should build on the result of the previous step.
-
-// Map the tasks to durations in hours.
-// Filter out everything that took less than two hours (i.e., remove from the collection)
-// Multiply the each duration by a per-hour rate for billing (you can decide yourself what Maartje should earn per hour) and sum it all up.
-// Output a formatted Euro amount, rounded to Euro cents, e.g: € 12.34.
-// Choose variable and parameters names that most accurately describe their contents or purpose. When naming an array, use a plural form, e.g. durations. For a single item, use a singular form, e.g. duration. For details, see Naming Conventions.
-// Don't forget to use =>.
