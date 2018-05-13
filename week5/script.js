@@ -57,18 +57,18 @@ const tuesday = [
 ];
 
 const tasks = monday.concat(tuesday);
-
+//TODO: main() contains all the steps
 function changeToHours(element){
-  element.duration = element.duration/60;
+  element.duration = Math.floor(element.duration/60);
 }
 // change duration to hours
 tasks.map(changeToHours);
-
+console.log(tasks);
 // remove element that has duration less than 2 hours
 var tasksModified =  tasks.filter(element => element.duration >= 2);
 
 //calculate the billing if he take 80 € /hour
-function calcBilling(element){
+function calcBilling(element, rate){
   let cost = element.duration * 80;
   let cost_rounded = cost.toFixed(2);
   let cost_euro = "€ "+ cost_rounded;
@@ -76,5 +76,3 @@ function calcBilling(element){
 }
 
 tasksModified.map(calcBilling);
-
-console.log(tasksModified);
