@@ -1,20 +1,9 @@
+//TODO: add function that return select element
 function main(){
   console.log('main!');
   const HyfReposHttps = 'https://api.github.com/orgs/HackYourFuture/repos';
   getRepositories(HyfReposHttps, xhrCallback);
-  let selectElement = document.getElementById("repositories");
-  selectElement.addEventListener("change", function(){
-    console.log('select option is changed');
-  });
 }
-
-// activities.addEventListener("change", function() {
-//   if(activities.value == "addNew")
-//   {
-//       addActivityItem();
-//   }
-// });
-
 
 
 // Function that makes an server request (API call)
@@ -29,12 +18,12 @@ function getRepositories(theUrl, callback)
   xmlHttp.send(null);
 }
 
-//TODO: change functions name, make add options as a new function
 // Callback that handles response from server
 function xhrCallback(data){
   console.log('data obj from server', JSON.parse(data));
   dataInJson = JSON.parse(data);
   addSelectElementOptions(dataInJson);
+  checkSelectChanging(dataInJson);
 }
 
 // Add options to select element
@@ -43,7 +32,22 @@ function addSelectElementOptions(arr){
   arr.forEach(rep => {
     let option = document.createElement('option');
     option.text = rep.name;
-    option.value = rep.name;
+    option.value = rep.id;
     selectElement.appendChild(option);
   });
+}
+
+//Function that works if select element change
+function checkSelectChanging (arr) {
+  let selectElement = document.getElementById("repositories");
+  selectElement.addEventListener("change", function(){
+    console.log('select option is changed');
+    renderRepositoryDetails(arr, selectElement);
+  });
+}
+
+function renderRepositoryDetails(arr, element){
+  let selectValue = element.value;
+  let repo = arr.filter(repo => repo.id == selectValue)[0]
+
 }
