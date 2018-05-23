@@ -49,5 +49,17 @@ function checkSelectChanging (arr) {
 function renderRepositoryDetails(arr, element){
   let selectValue = element.value;
   let repo = arr.filter(repo => repo.id == selectValue)[0]
-
+  const repositoryInfo = document.querySelector('#repo_info');
+  repositoryInfo.innerHTML =`<label>Repository  </label><span>${repo.name}</span>`;
+  console.log(repo.name);
 }
+
+// var row = document.createElement('tr');
+//     row.innerHTML = `<td>${arr[i].id}</td>
+//                      <td>${arr[i].name}</td>
+//                      <td>${arr[i].education}</td>
+//                      <td>${arr[i].city}</td>
+//                      <td><img src=${arr[i].pic}></td>`;
+//     table.appendChild(row);
+//   }
+//   document.body.appendChild(table)
