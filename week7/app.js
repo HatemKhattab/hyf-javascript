@@ -2,12 +2,12 @@
 function main(){
   console.log('main!');
   const HyfReposHttps = 'https://api.github.com/orgs/HackYourFuture/repos';
-  getRepositories(HyfReposHttps, xhrCallback);
+  getApiResponse(HyfReposHttps, xhrCallback);
 }
 
 
 // Function that makes an server request (API call)
-function getRepositories(theUrl, callback)
+function getApiResponse(theUrl, callback)
 {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() { 
@@ -17,6 +17,7 @@ function getRepositories(theUrl, callback)
   xmlHttp.open("GET", theUrl, true); // true for asynchronous 
   xmlHttp.send(null);
 }
+
 
 // Callback that handles response from server
 function xhrCallback(data){
@@ -42,24 +43,37 @@ function checkSelectChanging (arr) {
   let selectElement = document.getElementById("repositories");
   selectElement.addEventListener("change", function(){
     console.log('select option is changed');
-    renderRepositoryDetails(arr, selectElement);
+    const selectValue = selectElement.value;
+    renderRepositoryInfo(arr, selectValue);
+    //TODO: renderRepositoryConributers(arr, selectValue);
+    //bring contributers list
+
   });
 }
 
-function renderRepositoryDetails(arr, element){
-  let selectValue = element.value;
-  let repo = arr.filter(repo => repo.id == selectValue)[0]
+function renderRepositoryInfo(arr, value){
+  let repo = arr.filter(repo => repo.id == value)[0]
   const repositoryInfo = document.querySelector('#repo_info');
-  repositoryInfo.innerHTML =`<label>Repository  </label><span>${repo.name}</span>`;
-  console.log(repo.name);
+  repositoryInfo.innerHTML =`<label>Repository  </label><span>${repo.name}</span>
+                             <label>Description  </label><span>${repo.description}</span>
+                             <label>Forks  </label><span>${repo.forks}</span>
+                             <label>Updated  </label><span>${repo.updated_at}</span>`;
 }
 
-// var row = document.createElement('tr');
-//     row.innerHTML = `<td>${arr[i].id}</td>
-//                      <td>${arr[i].name}</td>
-//                      <td>${arr[i].education}</td>
-//                      <td>${arr[i].city}</td>
-//                      <td><img src=${arr[i].pic}></td>`;
-//     table.appendChild(row);
-//   }
-//   document.body.appendChild(table)
+
+
+// function fetchJSON(url, cb) { 
+//   const xhr = new XMLHttpRequest();
+//   xhr.open('GET', url); // default is true for 3rd arg
+//   xhr.responseType = 'json';
+//   xhr.onreadystatechange = () => {
+//       if (xhr.readyState === 4) { 
+//           if (xhr.status < 400) { 
+//               cb(null, xhr.response);
+//           } else {
+//               cb(new Error(xhr.statusText));
+//           }
+//       }
+//   };
+//   xhr.send();
+// }
