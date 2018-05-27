@@ -45,35 +45,30 @@ function checkSelectChanging (arr) {
     console.log('select option is changed');
     const selectValue = selectElement.value;
     renderRepositoryInfo(arr, selectValue);
-    //TODO: renderRepositoryConributers(arr, selectValue);
-    //bring contributers list
-
+    const repo = arr.filter(repo => repo.id == selectValue)[0];
+    const repoContributersUrl = repo.contributors_url;
+    getApiResponse(repoContributersUrl, renderRepositoryContributers);
   });
 }
 
 function renderRepositoryInfo(arr, value){
-  let repo = arr.filter(repo => repo.id == value)[0]
+  let repo = arr.filter(repo => repo.id == value)[0];
   const repositoryInfo = document.querySelector('#repo_info');
-  repositoryInfo.innerHTML =`<label>Repository  </label><span>${repo.name}</span>
-                             <label>Description  </label><span>${repo.description}</span>
-                             <label>Forks  </label><span>${repo.forks}</span>
-                             <label>Updated  </label><span>${repo.updated_at}</span>`;
+  repositoryInfo.innerHTML =`<strong>Repository  </strong><span>${repo.name}</span><br>
+                             <strong>Description  </strong><span>${repo.description}</span><br>
+                             <strong>Forks  </strong><span>${repo.forks}</span><br>
+                             <strong>Updated  </strong><span>${repo.updated_at}</span><br>`;
 }
 
-
-
-// function fetchJSON(url, cb) { 
-//   const xhr = new XMLHttpRequest();
-//   xhr.open('GET', url); // default is true for 3rd arg
-//   xhr.responseType = 'json';
-//   xhr.onreadystatechange = () => {
-//       if (xhr.readyState === 4) { 
-//           if (xhr.status < 400) { 
-//               cb(null, xhr.response);
-//           } else {
-//               cb(new Error(xhr.statusText));
-//           }
-//       }
-//   };
-//   xhr.send();
-// }
+function renderRepositoryContributers(response){
+  const contributers = JSON.parse(response);
+  const repoContributers = document.querySelector('#repo_contributors');
+  repoContributers.innerHTML =``;
+  contributers.forEach(function(item){
+    console.log(item);
+    repoContributers.innerHTML += `<div class="row">
+                                   <div class="col-xs-6"><h3>${item.login}</h3></div>
+                                   <div class="col-xs-6"><img src=${item.avatar_url}></div>
+                                   </div>`;
+  });
+}

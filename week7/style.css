@@ -1,3 +1,9 @@
-body{
-  background: peachpuff;
+#repo_info{
+  padding-top: 40px;
+}
+
+#repo_contributors img{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
 }
