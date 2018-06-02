@@ -1,44 +1,37 @@
-'use strict';
-
 function main(){
-  console.log('main function');
+  console.log('main!');
   const HyfReposHttps = 'https://api.github.com/orgs/HackYourFuture/repos';
-  fetchJSON(HyfReposHttps)
-    .then(data => xhrCallback(data))
-    .catch(err => renderError(err));
+  getApiResponse(HyfReposHttps, xhrCallback);
 }
 
-function fetchJSON(url) {
-  console.log('calling fetch json');
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', url);
-    xhr.responseType = 'json';
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState === 4) {
-        if (xhr.status < 400) {
-          resolve(xhr.response);
-        } else {
-          reject(new Error(xhr.statusText));
-        }
-      }
-    };
-    xhr.send();
-  });
+
+// Function that makes an server request (API call)
+function getApiResponse(theUrl, callback)
+{
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() { 
+    if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+      showLoading(false);
+      callback(xmlHttp.responseText);
+    }
+  }
+  
+  xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+
+  showLoading(true);
+  xmlHttp.send(null);
 }
 
-function renderError(err) {
-  console.error(err.message);
-}
 
+// Callback that handles response from server
 function xhrCallback(data){
-  console.log('calling xhrcallback');
-  addSelectElementOptions(data);
-  checkSelectChanging(data);
+  dataInJson = JSON.parse(data);
+  addSelectElementOptions(dataInJson);
+  checkSelectChanging(dataInJson);
 }
 
+// Add options to select element
 function addSelectElementOptions(arr){
-  console.log('calling addSelectElementOptions');
   let selectElement = document.getElementById("repositories");
   arr.forEach(rep => {
     let option = document.createElement('option');
@@ -48,22 +41,19 @@ function addSelectElementOptions(arr){
   });
 }
 
+//Function that works if select element change
 function checkSelectChanging (arr) {
-  console.log('calling checkSelectChanging');
   let selectElement = document.getElementById("repositories");
   selectElement.addEventListener("change", function(){
     const selectValue = selectElement.value;
     renderRepositoryInfo(arr, selectValue);
     const repo = arr.filter(repo => repo.id == selectValue)[0];
     const repoContributersUrl = repo.contributors_url;
-    fetchJSON(repoContributersUrl)
-      .then(data=> renderRepositoryContributers(data))
-      .catch(err => renderError(err));
-    });
+    getApiResponse(repoContributersUrl, renderRepositoryContributers);
+  });
 }
 
 function renderRepositoryInfo(arr, value){
-  console.log('calling renderRepositoryInfo');
   let repo = arr.filter(repo => repo.id == value)[0];
   const repositoryInfo = document.querySelector('#repo_info');
   repositoryInfo.innerHTML =``;
@@ -74,13 +64,23 @@ function renderRepositoryInfo(arr, value){
 }
 
 function renderRepositoryContributers(response){
-  console.log('calling renderRepositoryContributers');
+  const contributers = JSON.parse(response);
   const repoContributers = document.querySelector('#repo_contributors');
   repoContributers.innerHTML =``;
-  response.forEach(function(item){
+  contributers.forEach(function(item){
     repoContributers.innerHTML += `<div class="row">
                                    <div class="col-xs-6"><h3>${item.login}</h3></div>
                                    <div class="col-xs-6"><img src=${item.avatar_url}></div>
                                    </div>`;
   });
+}
+
+function showLoading(option) {
+  const loadingIcon = document.querySelector('#loading-icon');
+  if (option) {
+    loadingIcon.innerHTML = `<h1>Loading</h1>`;
+  }else {
+    loadingIcon.innerHTML = ``;
+  }
+  
 }
