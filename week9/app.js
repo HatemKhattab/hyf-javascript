@@ -84,13 +84,3 @@ function renderRepositoryContributers(response){
                                    </div>`;
   });
 }
-
-function hideModal(){
-  const spinner = document.querySelector('#loader');
-  spinner.style.display = "none";
-}
-
-function showModal(){
-  const spinner = document.querySelector('#loader');
-  spinner.style.display = "block";
-}
