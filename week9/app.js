@@ -2,7 +2,6 @@
 
 async function main(){
   try {
-    console.log('main function');
     const HyfReposHttps = 'https://api.github.com/orgs/HackYourFuture/repos';
     const reposList = await fetchJSON(HyfReposHttps);
     xhrCallback(reposList);
@@ -12,7 +11,6 @@ async function main(){
 }
 
 function fetchJSON(url) {
-  console.log('calling fetch json');
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', url);
@@ -35,13 +33,11 @@ function renderError(err) {
 }
 
 function xhrCallback(data){
-  console.log('calling xhrcallback');
   addSelectElementOptions(data);
   checkSelectChanging(data);
 }
 
 function addSelectElementOptions(arr){
-  console.log('calling addSelectElementOptions');
   let selectElement = document.getElementById("repositories");
   arr.forEach(rep => {
     let option = document.createElement('option');
@@ -53,7 +49,6 @@ function addSelectElementOptions(arr){
 
 function checkSelectChanging (arr) {
   try {
-    console.log('calling checkSelectChanging');
     let selectElement = document.getElementById("repositories");
     selectElement.addEventListener("change", async function(){
       const selectValue = selectElement.value;
@@ -66,12 +61,9 @@ function checkSelectChanging (arr) {
   }catch(err) {
     renderError(err)
   }
-
- 
 }
 
 function renderRepositoryInfo(arr, value){
-  console.log('calling renderRepositoryInfo');
   let repo = arr.filter(repo => repo.id == value)[0];
   const repositoryInfo = document.querySelector('#repo_info');
   repositoryInfo.innerHTML =``;
@@ -82,7 +74,6 @@ function renderRepositoryInfo(arr, value){
 }
 
 function renderRepositoryContributers(response){
-  console.log('calling renderRepositoryContributers');
   const repoContributers = document.querySelector('#repo_contributors');
   repoContributers.innerHTML =``;
   response.forEach(function(item){
