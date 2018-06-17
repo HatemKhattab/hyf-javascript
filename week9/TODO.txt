@@ -1,1 +1,2 @@
--Update README
+- update README
+- add loader icon
