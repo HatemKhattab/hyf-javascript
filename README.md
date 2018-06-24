@@ -1,7 +1,7 @@
 ## Javascript assigments
 Here you find different javascripts assigments that i have done in HackYourFuture web developments course:
 
-week  | description | solution
+Week_nr  | Description | Solution
 ------------- | ------------- | -------------
   week 1 | [Git and Bash Scripting](https://github.com/HackYourFuture/JavaScript1/blob/master/Week1/MAKEME.md)                                          |
   week 2 | [Variables, Bascic Data types and naming conventions](https://github.com/HackYourFuture/JavaScript1/blob/master/Week2/MAKEME.md)                |
