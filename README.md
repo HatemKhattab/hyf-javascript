@@ -14,4 +14,4 @@ week  | description | solution
   week 9 | [Object Oriented Programming and ES6 Classes, this and (call, apply, bind)](https://github.com/HackYourFuture/JavaScript3/blob/master/Week3/MAKEME.md) |
 
 ## Feedback
-If you have any feedback please add it as a new issue 
+If you have any feedback please add it as a new issue.
