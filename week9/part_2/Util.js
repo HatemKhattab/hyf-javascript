@@ -1,6 +1,5 @@
 class Util{
-
- fetchJSON(url) {
+  fetchJSON(url) {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.open('GET', url);
@@ -17,10 +16,8 @@ class Util{
       xhr.send();
     });
   }
-
-  greeting(){
-    console.log('Hello there ..');
-  }
-
-
 }
+
+Util.greeting = function(){
+  console.log('Hello');
+};
