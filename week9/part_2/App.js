@@ -1,15 +1,20 @@
-
+'use strict'
 class App {
-  constructor(data){
-    this._data = data;
+  constructor(url){
+    this._reposUrl = url;
   }
 
-  start(){
+  async start(){
+    try {
+      const repositories = await Util.fetchJSON(this._reposUrl);
+      Util.addSelectElementOptions(repositories);
+      Util.checkSelectChanging(repositories);
+    }
+    catch(error){
+      console.log(error);
+    }
   }
 
-  greeting(){
-    console.log('Greeting');
-  }
 }
 
 window.onload = () =>{
