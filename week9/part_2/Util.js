@@ -1,6 +1,8 @@
+//contains general functions that App use
 class Util{
 
 }
+
 Util.fetchJSON = function(url){
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
@@ -23,3 +25,13 @@ Util.fetchJSON = function(url){
 Util.greeting = function(){
   console.log('Hello');
 };
+
+Util.addSelectElementOptions = function (arr){
+  const selectElement = document.getElementById("repositories");
+  arr.forEach(rep => {
+    let option = document.createElement('option');
+    option.text = rep.name;
+    option.value = rep.id;
+    selectElement.appendChild(option);
+  });
+}
