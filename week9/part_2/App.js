@@ -1,13 +1,20 @@
 
 class App {
+  constructor(data){
+    this._data = data;
+  }
+
   start(){
-    //bring repository
-    //check change
+  }
+
+  greeting(){
+    console.log('Greeting');
   }
 }
 
 window.onload = () =>{
-  const app = new App();
+  const HyfReposHttps = 'https://api.github.com/orgs/HackYourFuture/repos';
+  const app = new App(HyfReposHttps);
   app.start();
 }
 
